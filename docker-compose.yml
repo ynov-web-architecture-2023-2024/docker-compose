@@ -30,6 +30,8 @@ services:
       - 3000:3000
     networks:
       - my_app_network
+    environment:
+      - NEXT_PUBLIC_BACKEND_API=http://172.28.0.1:3030
     depends_on:
       - my-app-sql
       - my-app-api
