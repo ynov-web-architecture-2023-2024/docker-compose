@@ -25,6 +25,15 @@ services:
       - my_app_network
     depends_on:
       - my-app-sql
+  my-app-api-search:
+    build:
+      context: ./my-app-api-search
+    ports: 
+      - 3131:3131
+    networks:
+      - my_app_network
+    depends_on:
+      - my-app-sql
   my-app-front:
     build:
       context: ./my-app-front
@@ -34,6 +43,7 @@ services:
       - my_app_network
     environment:
       - NEXT_PUBLIC_BACKEND_API=http://172.28.0.1:3030
+      - NEXT_PUBLIC_BACKEND_API=http://172.28.0.1:3131
     depends_on:
       - my-app-sql
       - my-app-api
