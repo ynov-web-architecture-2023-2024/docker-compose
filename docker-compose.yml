@@ -14,6 +14,8 @@ services:
       - 3306:3306
     networks:
       - my_app_network
+    volumes:
+      - ./my-app-sql-data/data:/var/lib/mysql
   my-app-api:
     build:
       context: ./my-app-api
@@ -35,3 +37,5 @@ services:
     depends_on:
       - my-app-sql
       - my-app-api
+volumes: 
+  my-app-sql-data:
