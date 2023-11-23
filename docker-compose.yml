@@ -42,10 +42,19 @@ services:
     networks:
       - my_app_network
     environment:
-      - NEXT_PUBLIC_BACKEND_API=http://172.28.0.1:3030
-      - NEXT_PUBLIC_BACKEND_API=http://172.28.0.1:3131
+      - NEXT_PUBLIC_BACKEND_API=http://my-app-api:3030
+      - NEXT_PUBLIC_BACKEND_API_2=http://localhost:3131
     depends_on:
       - my-app-sql
       - my-app-api
+  my-app-redis:
+    build:
+      context: ./my-app-redis
+    ports:
+      - 6379:6379
+    networks:
+      - my_app_network
+    environment:
+      - REDIS_PASSWORD=root
 volumes: 
   my-app-sql-data:
